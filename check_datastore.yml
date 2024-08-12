@@ -4,4 +4,7 @@
   tasks:
     - name: collect a list of the datacenters
       vmware.vmware_rest.vcenter_datacenter_info:
+        vcenter_hostname: "{{ vcenter_hostname }}"
+        vcenter_username: "{{ vcenter_username }}"
+        vcenter_password: "{{ vcenter_password }}"
       register: my_datacenters
