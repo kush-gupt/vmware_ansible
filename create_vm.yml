@@ -6,14 +6,14 @@
       vmware.vmware_rest.content_locallibrary_info:
       register: my_content_library
     
-    - name: Get the list of items of the NFS library
+    - name: Get the list of items of the Preffered library
       vmware.vmware_rest.content_library_item_info:
-        library_id: '{{ nfs_lib.id }}'
+        library_id: '{{ my_content_library[item_number_from_list].id }}'
       register: lib_items
     
     - name: Use the name to identify the item
       set_fact:
-        my_template_item: "{{ lib_items.value | selectattr('name', 'equalto', 'golden-template')|first }}"
+        my_template_item: "{{ lib_items.value | selectattr('name', 'equalto', 'template-name')|first }}"
     
     - name: Deploy a new VM based on the template
       vmware.vmware_rest.vcenter_vmtemplate_libraryitems:
